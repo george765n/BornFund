@@ -1,0 +1,35 @@
+type Donation @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  name: String! # string
+  message: String! # string
+  timestamp: BigInt! # uint256
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type campaignCreated @entity(immutable: true) {
+  id: Bytes!
+  title: String! # string
+  requiredAmount: BigInt! # uint256
+  owner: Bytes! # address
+  campaignAddress: Bytes! # address
+  imgURI: String! # string
+  timestamp: BigInt! # uint256
+  category: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type donated @entity(immutable: true) {
+  id: Bytes!
+  donar: Bytes! # address
+  amount: BigInt! # uint256
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

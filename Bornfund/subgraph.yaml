@@ -1,0 +1,32 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: scroll-sepolia
+    source:
+      address: "0xDd4468c13cef4E3159afd8801EFC7f8E5fAc882e"
+      abi: Contract
+      startBlock: 5690245
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Donation
+        - campaignCreated
+        - donated
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: Donation(indexed address,string,string,uint256,uint256)
+          handler: handleDonation
+        - event: campaignCreated(string,uint256,indexed address,address,string,indexed uint256,indexed string)
+          handler: handlecampaignCreated
+        - event: donated(indexed address,indexed uint256,indexed uint256)
+          handler: handledonated
+      file: ./src/contract.ts
